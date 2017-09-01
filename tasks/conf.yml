@@ -16,6 +16,7 @@
     owner: root
     group: root
     mode: 0644
+    notify: Restart awslogs service
 
 - name: "Configure AWS CloudWatch Logs Agent - Region"
   template:

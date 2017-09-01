@@ -35,3 +35,12 @@
     name: awslogs
     state: restarted
     enabled: yes
+
+- name: "Configure AWS CloudWatch Logs Agent"
+  template:
+    src: etc/awslogs/awslogs.conf.j2
+    dest: /var/awslogs/etc/awslogs.conf
+    owner: root
+    group: root
+    mode: 0644
+    notify: Restart awslogs service
