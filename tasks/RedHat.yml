@@ -28,6 +28,10 @@
 
   - name: "Install AWS CloudWatch Logs Agent (RedHat)."
     shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /etc/awslogs/awslogs.conf
+    register: result
+    until: result.rc == 0
+    retries: 5
+    delay: 10
 
   - name: "Override /etc/logrotate.d/awslogs"
     template:
